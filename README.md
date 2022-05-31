@@ -1,6 +1,7 @@
 # ROS2 - Installation and Learning
 
 ## Getting Help with ROS
+[ROS2 Documentation](https://docs.ros.org/en/humble/index.html)
 
 ROS 2 has quite a community. The main meeting place of the community is [ROS Discourse](https://discourse.ros.org/). In that forum you will find announcements, discussions about projects, working groups, packages, and more.
 
