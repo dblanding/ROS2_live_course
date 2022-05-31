@@ -98,9 +98,11 @@ def generate_launch_description():
     return ld
 ```
 
+Explore [twist_mux](https://index.ros.org/p/twist_mux/), available for install using apt-get.
+
 3. Sending Velocities to the Robot
 4. Extra Task: Color It Up
-
+5. Explore [ROS2 Control](https://control.ros.org/master/index.html)
 ### Project 3: Sensors & Sensor Fusion
 
 ### Project 4: Simultaneous Localization and Mapping
