@@ -111,7 +111,7 @@ Explore [twist_mux](https://index.ros.org/p/twist_mux/), available for install u
 * [How a Kalman filter works, in pictures](https://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/)
 * [Robot Localization Package](http://docs.ros.org/en/noetic/api/robot_localization/html/index.html)
 * [Kalman and Bayesian Filters in Python](https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python) – If you want to build practical experience developing your own filters, then this interactive book might be of interest to you. However, knowing Kalman filters on such a deep level is not required for this project.
-
+* Here is a comprehensive guide to help you [configure sensors using gazebo_ros plugins](https://medium.com/@bytesrobotics/a-review-of-the-ros2-urdf-gazebo-sensor-91e947c633d7) and get your own robot up and running.
 
 ### Project 4: Simultaneous Localization and Mapping
 
