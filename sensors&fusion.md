@@ -41,8 +41,8 @@ source install/setup.bash
 
 ## Milestone 5: EKF
 * I had a couple of problems with this milestone:
-    1. I naiively renamed the ekf_filter_node to ekf_node, not realizing that the parameter file ekf.yaml referred to the name ekf_filter_node. As a result, the parameters didn't get set.
-    2. Another issue that plagued me was getting a flood of timing warnings. The problem was that not all the nodes were using sim_time.
+    1. I naiively renamed the ekf_filter_node to ekf_node, not realizing that the parameter file ekf.yaml referred to the name ekf_filter_node. As a result, the parameters didn't get loaded.
+    2. Another issue that plagued me was a flood of timing warnings coming from gazebo. The problem was that not all the nodes were using sim_time.
         * Use `ros2 param list` to get a list of all params in all nodes
         * Use `ros2 param get <node_name> use_sim_time` to get the boolean value for each node.
         * Turns out that there were three nodes with value= `false`:
@@ -50,15 +50,10 @@ source install/setup.bash
             * /robot_joint_publisher
             * /ekf_filter_node
 
-### Once I got these problems sorted out, I was able to launch with 2 commands:
+### Once I got these problems sorted out, I was able to launch with 3 commands:
 1. `ros2 launch dribot_simulation gazebo_launch.py`
-    * I set the use_sim_time parameters for 2 nodes "on the fly":
-        * `ros2 param set /robot_state_publisher true`
-        * `ros2 param set /robot_joint_publisher true`
-2. * `ros2 launch dribot_perception dribot_ekf_launch.py`
-    * (The use_sim_time parameter was set in file ekf.yaml)
-### I was able to drive the robot around with:
-* `ros2 run teleop_twist_keyboard teleop_twist_keyboard`
+2. `ros2 launch dribot_perception dribot_ekf_launch.py`
+3. `ros2 run rviz2 rviz2`
 ### I was then able to graph the system
 
 * `ros2 run rqt_tf_tree rqt_tf_tree`
@@ -67,5 +62,10 @@ source install/setup.bash
 
 * `ros2 run rqt_graph rqt_graph`
 
-![node_graph](images/rosgraph.png)
+![node_graph](images/nodes&topics.png)
+
+### Launch teleop to drive the robot around:
+* `ros2 run teleop_twist_keyboard teleop_twist_keyboard`
+
+![node_graph](images/nodes&topics+kbrd.png)
 
