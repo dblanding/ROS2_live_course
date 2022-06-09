@@ -41,31 +41,46 @@ source install/setup.bash
 
 ## Milestone 5: EKF
 * I had a couple of problems with this milestone:
-    1. I naiively renamed the ekf_filter_node to ekf_node, not realizing that the parameter file ekf.yaml referred to the name ekf_filter_node. As a result, the parameters didn't get loaded.
-    2. Another issue that plagued me was a flood of timing warnings coming from gazebo. The problem was that not all the nodes were using sim_time.
+    1. I naively renamed the ekf_filter_node to ekf_node, not realizing that the parameter file ekf.yaml referred to the name ekf_filter_node. As a result, the parameters didn't get loaded.
+    2. Another issue that plagued me was a flood of timing warnings coming from gazebo. Discovered that not all the nodes were using sim_time.
         * Use `ros2 param list` to get a list of all params in all nodes
         * Use `ros2 param get <node_name> use_sim_time` to get the boolean value for each node.
         * Turns out that there were three nodes with value= `false`:
             * /robot_state_publisher
             * /robot_joint_publisher
             * /ekf_filter_node
+                * Just needed to fix this by adding a parameter to ekf.yaml file
 
-### Once I got these problems sorted out, I was able to launch with 3 commands:
+### Once I got these 2 problems sorted out:
+I was able to run a series of launch commands:
 1. `ros2 launch dribot_simulation gazebo_launch.py`
 2. `ros2 launch dribot_perception dribot_ekf_launch.py`
-3. `ros2 run rviz2 rviz2`
-### I was then able to graph the system
+    * Examine the system graph using `ros2 run rqt_graph rqt_graph`. This shows /clock being published by gazebo and all nodes using it.
+![node_graph](images/rosgraph0.png)
 
-* `ros2 run rqt_tf_tree rqt_tf_tree`
-
+    * `ros2 run rqt_tf_tree rqt_tf_tree` shows **odom frame** is now the parent of base_link:
 ![TF Tree](images/tf_tree_frames.png)
 
-* `ros2 run rqt_graph rqt_graph`
+3. Next, start RViz
+    * `ros2 run rviz2 rviz2`
+    * Click to enable camera view
+    * `ros2 run rqt_graph rqt_graph`
 
 ![node_graph](images/nodes&topics.png)
 
-### Launch teleop to drive the robot around:
-* `ros2 run teleop_twist_keyboard teleop_twist_keyboard`
+4. Launch teleop to drive the robot around using:
+    * `ros2 run teleop_twist_keyboard teleop_twist_keyboard`
+    * `ros2 run rqt_graph rqt_graph`
 
 ![node_graph](images/nodes&topics+kbrd.png)
 
+## PS: I went back to see if I could reconstruct the flood of warning errors encountered above:
+* I ran `git diff` to find the 2 edits I made that "fixed" the problem
+    1. Name of ekf node didn't match name at the top of the ekf.yaml file
+    2. The parameter use_sim_time was not set to True in ekf.yaml
+* I put these two edits back to their earlier configuration, and the ran `colcon build`, but the flood of warning errors could not be induced.
+    * I concluded that the process of building generates new files, but doesn't remove any old files, so the only way I would get the errors to come back would be to scrap all the existing folders (except src/) and build afresh.
+        * Decided to try this in a new workspace named sensors2.
+        * Results were inconclusive. I wasn't able to get the flood of warning messages I had before.
+        * Possibly because a recent s/w update revised something in one of the ros2 packages??
+        
