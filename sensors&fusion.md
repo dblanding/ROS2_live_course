@@ -83,4 +83,101 @@ I was able to run a series of launch commands:
         * Decided to try this in a new workspace named sensors2.
         * Results were inconclusive. I wasn't able to get the flood of warning messages I had before.
         * Possibly because a recent s/w update revised something in one of the ros2 packages??
-        
+
+## Examine author's solution src/ and compare against my src/:
+1. Set up SIDE by SIDE comparison between my /src tree and author solution /src tree
+    * use $ `tree /home/doug/ws/sensors/src` to geberate tree:
+```
+/home/doug/ws/sensors/src
+├── dribot_description
+│   ├── CMakeLists.txt
+│   ├── launch
+│   │   ├── load_description_launch.py
+│   │   └── rviz_launch.py
+│   ├── package.xml
+│   └── urdf
+│       ├── camera.xacro
+│       ├── caster.xacro
+│       ├── dribot_description.xacro
+│       ├── imu.xacro
+│       ├── lidar.xacro
+│       ├── macros.xacro
+│       └── wheel.xacro
+├── dribot_perception
+│   ├── dribot_perception
+│   │   └── __init__.py
+│   ├── launch
+│   │   ├── camera_launch.py
+│   │   └── dribot_ekf_launch.py
+│   ├── package.xml
+│   ├── params
+│   │   └── ekf.yaml
+│   ├── resource
+│   │   └── dribot_perception
+│   ├── setup.cfg
+│   ├── setup.py
+│   └── test
+│       ├── test_copyright.py
+│       ├── test_flake8.py
+│       └── test_pep257.py
+├── dribot_simulation
+│   ├── CMakeLists.txt
+│   ├── launch
+│   │   └── gazebo_launch.py
+│   └── package.xml
+├── dribot_teleop
+│   ├── dribot_teleop
+│   │   ├── __init__.py
+│   │   └── vel_mux.py
+│   ├── package.xml
+│   ├── resource
+│   │   └── dribot_teleop
+│   ├── setup.cfg
+│   ├── setup.py
+│   └── test
+│       ├── test_copyright.py
+│       ├── test_flake8.py
+│       └── test_pep257.py
+├── images
+│   └── rviz.png
+└── README.md
+```
+
+### Note any significant differences:
+
+#### In dribot_description.xacro:
+    In diff_drive plugin:
+        * I  had <robot_base_frame> base_link </robot_base_frame>
+        * Author's solution: <robot_base_frame> base_footprint </robot_base_frame>
+
+#### In ekf.yaml:
+    In odom0_config:
+        * I had:
+```
+        odom0_config: [true, true, false, #x, y, z
+                       false, false, true, #roll, pitch, yaw
+                       false, false, false, #vx, vy, vz
+                       false, false, false,  #vroll, vpitch, vyaw
+                       false, false, false] #ax, ay, az
+```
+
+        * author's solution had:
+```
+        odom0_config: [false, false, false, #x, y, z
+                       false, false, false, #roll, pitch, yaw
+                       true, true, true, #vx, vy, vz
+                       false, false, true,  #vroll, vpitch, vyaw
+                       false, false, false] #ax, ay, az
+```
+#### In dribot_simulation -> gazebo_launch.py:
+    I made no changes, whereas the author added 2 lines:
+        * first set_sim_time true
+        * and at the end launched ekf
+```
+    return launch.LaunchDescription([
+        launch_ros.actions.SetParameter(name='use_sim_time', value=True),
+        gazebo,
+        spawn_entity,
+        robot_description,
+        ekf
+```
