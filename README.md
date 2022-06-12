@@ -106,7 +106,7 @@ Explore [twist_mux](https://index.ros.org/p/twist_mux/), available for install u
 5. Explore [ROS2 Control](https://control.ros.org/master/index.html)
 ### Project 3: [Sensors & Sensor Fusion](sensors&fusion.md)
 
-### Project 4: Simultaneous Localization and Mapping
+### Project 4: [Simultaneous Localization and Mapping](slam.md)
 
 ### Project 5: Navigation
 
