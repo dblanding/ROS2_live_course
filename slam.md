@@ -73,7 +73,7 @@ Looked instead like **this**:
 1. I went back to the previous project workspace (sensors) and checked that I could still launch gazebo OK and I could.
 2. I copied the launch file from the new (slam) ws back to the sensors ws (renamed gazebo1_launch.py) and gazebo launched OK.
 3. I copied the launch file from the sensors ws into the new slam ws (renamed gazebo0_launch.py) and it did **not** launch OK.
-4. I went to the [aws-robomaker-small-house-world website](https://github.com/aws-robotics/aws-robomaker-small-house-world/tree/ros2) and followed the instructions for how to build and launch gazebo with the small house world. This **did work OK**. In the README it was [explained how to build and launch](https://github.com/aws-robotics/aws-robomaker-small-house-world/tree/ros2#ros-launch-with-gazebo-viewer-without-a-robot) the small hoouse world in gazebo.
+4. I went to the [aws-robomaker-small-house-world website](https://github.com/aws-robotics/aws-robomaker-small-house-world/tree/ros2) and followed the instructions for how to build and launch gazebo with the small house world. This **did work OK**. In the README it was [explained how to build and launch](https://github.com/aws-robotics/aws-robomaker-small-house-world/tree/ros2#ros-launch-with-gazebo-viewer-without-a-robot) the small house world in gazebo.
 ```
 # build for ROS
 source /opt/ros/galactic/setup.bash
@@ -87,5 +87,9 @@ ros2 launch aws_robomaker_small_house_world small_house.launch.py gui:=true
 ```
 ### In summary:
 * I added the two "source" lines to my `~/bashrc` file.
-* In the future, before doing `colcon build`, I will make it a habit to run `rosdep install --from-paths . --ignore-src -r -y`
-
+* As a standard practice, before doing `colcon build`, I will make it a habit to run `rosdep install --from-paths . --ignore-src -r -y`
+* For the 3 launch files in dribot_simulation:
+    * gazebo_launch.py launches OK.
+    * gazebo0_launch.py launches OK.
+    * gazebo_house_launch.py shows the house OK but fails to launch the robot.
+* I later learned that the RasPi4 is only **just barely** able to launch this Gazebo small_house world. If I try to launch immediately after rebooting the Pi, the CPU usage stays just below 100% and it launches OK. But if the Pi hasn't been freshly rebooted, the CPU usage pegs at 100% and the launch fails.
