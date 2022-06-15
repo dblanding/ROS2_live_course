@@ -92,4 +92,7 @@ ros2 launch aws_robomaker_small_house_world small_house.launch.py gui:=true
     * gazebo_launch.py launches OK.
     * gazebo0_launch.py launches OK.
     * gazebo_house_launch.py shows the house OK but fails to launch the robot.
-* I later learned that the RasPi4 is only **just barely** able to launch this Gazebo small_house world. If I try to launch immediately after rebooting the Pi, the CPU usage stays just below 100% and it launches OK. But if the Pi hasn't been freshly rebooted, the CPU usage pegs at 100% and the launch fails.
+* I later learned that the RasPi4 is only **just barely** able to launch this Gazebo small_house world. It works if I try to launch **immediately after rebooting** the Pi (the CPU usage stays just below 100%). But if the Pi hasn't been freshly rebooted, the CPU usage pegs at 100% and the launch fails.
+* As a workaround, I will make my own "small house" using Gazebo Building Editor.
+* Launch my dribot in gazebo using `ros2 launch dribot_simulation gazebo_launch.py`
+* Followed this [tutorial](https://classic.gazebosim.org/tutorials?cat=build_world&tut=building_editor#Edityourbuilding) which shows how to construct a house from a floorplan.
