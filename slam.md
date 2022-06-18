@@ -104,11 +104,23 @@ ros2 launch aws_robomaker_small_house_world small_house.launch.py gui:=true
         * I had to modify setup.py in the new package to find the world file
     * This imposes a far lighter load on my RasPi4
 * I found an excellent medium article [Creating a Gazebo Simulation with ROS2 for your own robot](https://medium.com/creating-a-gazebo-simulation-with-ros2-for-your/introduction-8daf6efa12f4) that was very helpful.
-* I launch gazebo with the house world using this script
-    * `ros2 launch dribot_simulation gazebo_house_launch.py`
-    * This also launches ekf node
-    * firing up Rviz `ros2 run rviz2 rviz2` shows that everything works together
+* Also found another [article](https://www.theconstructsim.com/exploring-ros2-with-wheeled-robot-1-launch-ros2-simulation/) that was helpful in writing the launch file
+* A single launch file `ros2 launch dribot_simulation gazebo_house_launch.py` now launches everything:
+    * Sets parameter 'use_sim_time': true for all
+    * Gazebo
+        * With my simple house 'world'
+        * Optionally in "headless" mode
+    * spawn entity: robot
+    * robot_description node
+    * optionally starts Rviz `ros2 run rviz2 rviz2` showing everything working together
         * laser
         * camera
         * diff_drive responds to /cmd_vel
-* Next, I should try adding the option in the launch file to set 'gui': False 
+* However, node graph is slightly differernt than the one at the end of the previous project.
+    * note difference along the path from /clock to /robot_state_publisher to /robot_description to /rviz
+
+![slam node graph](images/rosgraph-slam.png)
+* Nevertheless, everything seems to work fine:
+
+![screenshot](images/Screenshot-slam.png)
+
