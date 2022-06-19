@@ -2,8 +2,6 @@
 
 * [Back to TOP](https://github.com/dblanding/ROS2_live_course)
 
-## Project resources
-
 ## Trouble launching Gazebo
 1. I Started the project in the usual way:
     * Create a Manning repository for liveProject
@@ -124,3 +122,33 @@ ros2 launch aws_robomaker_small_house_world small_house.launch.py gui:=true
 
 ![screenshot](images/Screenshot-slam.png)
 
+## Online learning resources: Learning about SLAM
+* [Intro to SLAM](https://www.youtube.com/watch?v=0I30M6yTklo) (Cyrill Stachniss)
+* On the use of SLAM Toolbox (Steve Macenski at ROSCon 2019)
+    * [Video](https://vimeo.com/378682207)
+    * [Slides](https://roscon.ros.org/2019/talks/roscon2019_slamtoolbox.pdf)
+    * [Github repo](https://github.com/SteveMacenski/slam_toolbox)
+* [Understanding SLAM Using Pose Graph Optimization](https://www.youtube.com/watch?v=saVZtgPyyJQ) Matlab Tech talk by Brian Douglas
+* Mathworks [Implement Simultaneous Localization And Mapping (SLAM) with Lidar Scans](https://www.mathworks.com/help/nav/ug/implement-simultaneous-localization-and-mapping-with-lidar-scans.html) Demonstrates how to implement the Simultaneous Localization And Mapping (SLAM) algorithm on a collected series of lidar scans using pose graph optimization
+
+## Milestone 1
+### Step 6: Launch everything
+* `ros2 launch dribot_simulation gazebo_house_launch.py`
+* `ros2 launch dribot_slam slam_toolbox_mapping_launch.py`
+* `ros2 run teleop_twist_keyboard teleop_twist_keyboard`
+* `ros2 run rviz2 rviz2`
+* Set world frame to /map and drive robot around until map is complete
+* Add wheel odometry and EKF odometry topics. Ensure you preserve the measurements over long periods of time. Do you see the difference between both odom topics after mapping the whole space? Feel free to note the answer; we will ask about it in the final quiz.
+
+> **Author insight**: Before you move on to the next step, to create a map usable for localization we will want to serialize the map. Saving the map is different in slam_toolbox, so when you go through the documentation please pay close attention to that. We will cover this topic more in the Author Insights section below.
+
+### Step 7: Serialize & Save map
+* `ros2 service call /slam_toolbox/serialize_map slam_toolbox/srv/SerializePoseGraph "filename: '/home/doug/ws/slam/src/dribot_slam/res/house_map'"`
+* `ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "name:
+  data: '/home/doug/ws/slam/src/dribot_slam/res/house_map'"`
+
+* Tab completion returns this advice:
+```
+doug@raspi4:~$ ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap 
+name:\^J\ \ data:\ \'\'\  -r                        --rate
+```
