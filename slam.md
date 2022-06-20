@@ -158,4 +158,7 @@ name:\^J\ \ data:\ \'\'\  -r                        --rate
 ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "name:
   data: '/home/doug/ws/slam/src/dribot_slam/res/house_map'"
 ```
+## Revised house world to give dribot some driving loops.
+* This allows me to see loop closure during SLAM mapping.
 
+![View of RViz after a few times through the house](images/rviz_screenshot.png)
