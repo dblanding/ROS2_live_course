@@ -144,8 +144,7 @@ ros2 launch aws_robomaker_small_house_world small_house.launch.py gui:=true
 
 ### Step 7: Serialize & Save map
 * `ros2 service call /slam_toolbox/serialize_map slam_toolbox/srv/SerializePoseGraph "filename: '/home/doug/ws/slam/src/dribot_slam/res/house_map'"`
-* `ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "name:
-  data: '/home/doug/ws/slam/src/dribot_slam/res/house_map'"`
+* Save map in .pgm format (see notes below)
 
 * Tab completion returns this advice:
 ```
@@ -153,14 +152,10 @@ doug@raspi4:~$ ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap
 name:\^J\ \ data:\ \'\'\  -r                        --rate
 ```
 
-* This is the text copied and pasted from the "hint" for step 7:
+* The only way I can get this to work is to copy/paste from the "hint" for step 7 (but with my path to workspace filled in):
 
 ```
 ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "name:
-  data: 'YOUR_PATH_TO_WORKSPACE/src/dribot_slam/res/house_map'"
+  data: '/home/doug/ws/slam/src/dribot_slam/res/house_map'"
 ```
-
-Try:
-
-> ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "name:\n  data: '/home/doug/ws/slam/src/dribot_slam/res/house_map'"
 
