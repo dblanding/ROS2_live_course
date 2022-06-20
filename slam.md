@@ -152,3 +152,15 @@ ros2 launch aws_robomaker_small_house_world small_house.launch.py gui:=true
 doug@raspi4:~$ ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap 
 name:\^J\ \ data:\ \'\'\  -r                        --rate
 ```
+
+* This is the text copied and pasted from the "hint" for step 7:
+
+```
+ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "name:
+  data: 'YOUR_PATH_TO_WORKSPACE/src/dribot_slam/res/house_map'"
+```
+
+Try:
+
+> ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "name:\n  data: '/home/doug/ws/slam/src/dribot_slam/res/house_map'"
+
