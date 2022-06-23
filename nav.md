@@ -9,4 +9,9 @@
 ## Milestone 2: Planners & Controllers
 ### Learning Resources:
 * [Setting up navigation plugins](https://navigation.ros.org/setup_guides/algorithm/select_algorithm.html)
+    * Has a link to [Navigation servers](https://navigation.ros.org/concepts/index.html#navigation-servers)
 * 
+### Experiment with different parameters
+Now that I am going to be twidling the parmeters, I will begin to use the sym-link flag when building. 
+`colcon build --symlink-install`
+

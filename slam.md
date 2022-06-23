@@ -158,6 +158,14 @@ name:\^J\ \ data:\ \'\'\  -r                        --rate
 ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "name:
   data: '/home/doug/ws/slam/src/dribot_slam/res/house_map'"
 ```
+When asked how "tab completion" worked on his machine, Mat said:
+> Mat Sadowski: It actually should be fine. If you now press ‘n’ followed by tab it should autocomplete to:
+```
+ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "name:
+  data: ''"
+```
+> Filling in the data field should make the service work.
+
 ## Revised house world to give dribot some driving loops.
 * This allows me to see loop closure during SLAM mapping.
 
