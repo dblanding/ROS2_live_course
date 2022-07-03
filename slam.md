@@ -144,27 +144,11 @@ ros2 launch aws_robomaker_small_house_world small_house.launch.py gui:=true
 
 ### Step 7: Serialize & Save map
 * `ros2 service call /slam_toolbox/serialize_map slam_toolbox/srv/SerializePoseGraph "filename: '/home/doug/ws/slam/src/dribot_slam/res/house_map'"`
-* Save map in .pgm format (see notes below)
-
-* Tab completion returns this advice:
-```
-doug@raspi4:~$ ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap 
-name:\^J\ \ data:\ \'\'\  -r                        --rate
-```
-
-* The only way I can get this to work is to copy/paste from the "hint" for step 7 (but with my path to workspace filled in):
-
+* Save map in .pgm format (copy/paste below)
 ```
 ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "name:
   data: '/home/doug/ws/slam/src/dribot_slam/res/house_map'"
 ```
-When asked how "tab completion" worked on his machine, Mat said:
-> Mat Sadowski: It actually should be fine. If you now press ‘n’ followed by tab it should autocomplete to:
-```
-ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "name:
-  data: ''"
-```
-> Filling in the data field should make the service work.
 
 ## Revised house world to give dribot some driving loops.
 * This allows me to see loop closure during SLAM mapping.

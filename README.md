@@ -110,3 +110,5 @@ Explore [twist_mux](https://index.ros.org/p/twist_mux/), available for install u
 
 ### Project 5: [Navigation](nav.md)
 
+### General [Notes/Comments](ros2_questions.md) about questions/answers encountered.
+

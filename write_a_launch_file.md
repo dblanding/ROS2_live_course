@@ -4,7 +4,7 @@ Back to [Simulate a Robot](simulate_robot_in_Gazebo.md)
 
 ## How-to tutorials on Writing launch files in ROS2:
 * [The ROS2 Beginner Tutorials](https://docs.ros.org/en/galactic/Tutorials.html#beginner) includes a link to [Creating a launch file](https://docs.ros.org/en/galactic/Tutorials/Launch/Creating-Launch-Files.html) -> `turtlesim_mimic_launch.py`
-* [introducing ROS2 Launch](https://docs.ros.org/en/galactic/Tutorials/Launch/CLI-Intro.html) shows how to write a launch file that launches 2 turtlesim robots, one mimicing the other. -> `multisim.launch.py`
+* [Introducing ROS2 Launch](https://docs.ros.org/en/galactic/Tutorials/Launch/CLI-Intro.html) shows how to write a launch file that launches 2 turtlesim robots, one mimicing the other. -> `multisim.launch.py`
 * A [series of launch tutorials](https://docs.ros.org/en/galactic/Tutorials/Launch/Launch-Main.html)
     * Creating a ROS 2 Launch File (outside of a package) -> `turtlesim_mimic_launch.py`
     * Launching and Monitor Multiple Nodes with Launch -> `ros2 launch my_package my_script.launch.py`
@@ -13,6 +13,7 @@ Back to [Simulate a Robot](simulate_robot_in_Gazebo.md)
     * Using ROS 2 Launch For Large Projects                                                                 -> `ros2 launch launch_tutorial launch_turtlesim.launch.py`
 * For [Milestone 1 of Simulate a Robot project](https://github.com/manning-lp/dblanding-simulate-a-robot-lp) I wrote a launch file that shows dribot in Rviz.
     * launch with `ros2 launch dribot_description rviz_launch.py`
+* In lieu of clearly written tutorials on how to write launch files in ROS2, refer to the source code: [ROS2 Launch Architecture](https://github.com/ros2/launch/blob/master/launch/doc/source/architecture.rst) 
 
 ## Notes on successfully run examples of ROS2 launch files
 
