@@ -34,3 +34,16 @@
 * Use target file: `nav2_params_DWB.yaml` for **DWB**
 * Use target file: `nav2_params_M2sol_RPP.yaml` for **Regulated Pure Pursuit**
 
+# Milestone 3: Costmaps (global & local)
+### robot_radius = 0.22 m:
+![robot radius = 0.22m](images/robot_radius_0.22.png)
+### robot_radius = 0.25 m:
+![robot radius = 0.25m](images/robot_radius_0.25.png)
+### inflation radius = 0.55:
+![inflation radius = 0.55 m](images/inflation_radius_0.55.png)
+### inflation radius = 0.4:
+![inflation radius = 0.4 m](images/inflation_radius_0.4.png)
+* I tried changing these parameters using `ros2 param set` but the changes didn't take effect  on the screen. I had to change the values in the yaml file and relaunch.
+### Below shows the effect of revising `cost_scaling_factor` from 3.0 to 2.0. There is no discernible effect on the costmap. According to the [documentation](https://navigation.ros.org/configuration/packages/costmap-plugins/inflation.html), the cost scaling factor is the Exponential decay factor across inflation radius. I thought I might notice a difference in the distance the path planner allows around corners and obstacles, but I didn't notic any, so I decided to just leave it at 3.0.
+![cost scaling factor = 2.0](images/cost_scaling_2.0.png)
+
