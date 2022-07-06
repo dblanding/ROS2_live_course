@@ -46,4 +46,61 @@
 * I tried changing these parameters using `ros2 param set` but the changes didn't take effect  on the screen. I had to change the values in the yaml file and relaunch.
 ### Below shows the effect of revising `cost_scaling_factor` from 3.0 to 2.0. There is no discernible effect on the costmap. According to the [documentation](https://navigation.ros.org/configuration/packages/costmap-plugins/inflation.html), the cost scaling factor is the Exponential decay factor across inflation radius. I thought I might notice a difference in the distance the path planner allows around corners and obstacles, but I didn't notic any, so I decided to just leave it at 3.0.
 ![cost scaling factor = 2.0](images/cost_scaling_2.0.png)
+********************************************************************************
+### Here is the current directory structure at this point.
+```
+doug@raspi4:~$ tree /home/doug/ws/nav/src/dribot_navigation
+/home/doug/ws/nav/src/dribot_navigation
+├── CMakeLists.txt
+├── include
+│   └── dribot_navigation
+├── launch
+│   ├── navigation_ans_launch.py
+│   └── navigation_launch.py
+├── package.xml
+├── params
+│   ├── nav2_params_BRINGUP.yaml
+│   ├── nav2_params_DWB.yaml
+│   ├── nav2_params_M1sol.yaml
+│   ├── nav2_params_M2sol_RPP.yaml
+│   ├── nav2_params_M2sol.yaml
+│   ├── nav2_params_M3sol.yaml
+│   ├── nav2_params_ORIG.yaml
+│   ├── nav2_params_RPP.yaml
+│   └── nav2_params.yaml -> nav2_params_DWB.yaml
+└── src
+```
+## Milestone 4: Waypoint Navigation
+* Create Package `dribot_wp_follower` 
+
+`ros2 pkg create --build-type ament_python --node-name wp_follower dribot_wp_follower --dependencies nav2_msgs`
+
+* Complete Steps 1, 2, 3 & 4
+* Downladed partial solution
+* Here is the current directory structure at this point.
+```
+doug@raspi4:~$ tree /home/doug/ws/nav/src/dribot_wp_follower
+/home/doug/ws/nav/src/dribot_wp_follower
+├── dribot_wp_follower
+│   ├── __init__.py
+│   └── wp_follower.py
+├── launch
+│   └── follow_waypoints_launch.py
+├── package.xml
+├── res
+│   ├── waypoints.yaml
+│   └── yaml_foo.py
+├── resource
+│   └── dribot_wp_follower
+├── setup.cfg
+├── setup.py
+└── test
+    ├── test_copyright.py
+    ├── test_flake8.py
+    └── test_pep257.py
+```
+* Did tutorial [Using parameters in a class](https://docs.ros.org/en/galactic/Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-Python.html), created package in `~/ws/dev/`.
+* To prepare for Step 5, go through [ROS2 actions tutorial](https://docs.ros.org/en/galactic/Tutorials/Actions/Writing-a-Py-Action-Server-Client.html)
+    * First, do the prererequisite [Creating an action tutorial](https://docs.ros.org/en/galactic/Tutorials/Intermediate/Creating-an-Action.html).
+    
 
