@@ -99,8 +99,9 @@ doug@raspi4:~$ tree /home/doug/ws/nav/src/dribot_wp_follower
     ├── test_flake8.py
     └── test_pep257.py
 ```
-* Did tutorial [Using parameters in a class](https://docs.ros.org/en/galactic/Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-Python.html), created package in `~/ws/dev/`.
-* To prepare for Step 5, go through [ROS2 actions tutorial](https://docs.ros.org/en/galactic/Tutorials/Actions/Writing-a-Py-Action-Server-Client.html)
-    * First, do the prererequisite [Creating an action tutorial](https://docs.ros.org/en/galactic/Tutorials/Intermediate/Creating-an-Action.html).
-    
+* Did tutorial [Using parameters in a class](https://docs.ros.org/en/galactic/Tutorials/Beginner-Client-Libraries/Using-Parameters-In-A-Class-Python.html), created package in workspace `~/ws/dev/`.
+* To prepare for Step 5, go through [ROS2 actions tutorial](https://docs.ros.org/en/galactic/Tutorials/Actions/Writing-a-Py-Action-Server-Client.html), in which an action server is created, and an action client is written.
+    * First, do the prerequisite [Creating an action](https://docs.ros.org/en/galactic/Tutorials/Intermediate/Creating-an-Action.html) tutorial, which creates package `action_tutorials_interfaces` in workspace `~/ws/action_ws`.
+    * I also found a [Medium Article](https://medium.com/schmiedeone/getting-started-with-ros2-part-3-231a1ac3b1ee) that goes through the same process, but offers the insights and perspective of another author.
+    * An [article about ros2 actions](http://design.ros2.org/articles/actions.html) provides an overview of ROS2 actions, including a perspective on the way they have been implemented differently than in ROS1.
 
