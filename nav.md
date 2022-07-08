@@ -104,4 +104,19 @@ doug@raspi4:~$ tree /home/doug/ws/nav/src/dribot_wp_follower
     * First, do the prerequisite [Creating an action](https://docs.ros.org/en/galactic/Tutorials/Intermediate/Creating-an-Action.html) tutorial, which creates package `action_tutorials_interfaces` in workspace `~/ws/action_ws`.
     * I also found a [Medium Article](https://medium.com/schmiedeone/getting-started-with-ros2-part-3-231a1ac3b1ee) that goes through the same process, but offers the insights and perspective of another author.
     * An [article about ros2 actions](http://design.ros2.org/articles/actions.html) provides an overview of ROS2 actions, including a perspective on the way they have been implemented differently than in ROS1.
+* In order to complete step 5, needed to install 'tf_transformations'
+    * `sudo apt install ros-galactic-tf-transformations`
+* Upon completion of Step 5, launch simulation and test waypoint follower:
+    * `ros2 launch dribot_simulation gazebo_house_launch.py`
+    * `ros2 launch dribot_navigation navigation_launch.py`
+    * `ros2 launch dribot_wp_follower follow_waypoints_launch.py`
+* Unfortunately, the follow_waypoints demonstration didn't go to completion on my Raspi4. The screenshot below shows the concatenated paths were found, but the controller aborted (as it often does) on its way to the first waypoint.
+![follow waypoints screenshot](images/follow_waypoints.png)
+********************************************************************************
+## Future work(?)
+
+> The basics covered in this project should be a good foundation for your navigation needs. If you want to explore Nav2 further, you can implement
+* [Keepout Zones](https://navigation.ros.org/tutorials/docs/navigation2_with_keepout_filter.html)
+* [Speed Limits](https://navigation.ros.org/tutorials/docs/navigation2_with_speed_filter.html)
+* [Behavior Trees](https://navigation.ros.org/behavior_trees/index.html)
 
